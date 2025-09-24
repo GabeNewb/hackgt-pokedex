@@ -1,15 +1,11 @@
-import { Text, View } from "react-native";
+import { queryClient } from "@/react-query/client";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { App } from "./App";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   );
 }
