@@ -5,8 +5,9 @@ interface PokemonPhysicalCharacteristicsProps {
   pokemon: Pokemon;
 }
 
-export const PokemonPhysicalCharacteristics = ({ pokemon }: PokemonPhysicalCharacteristicsProps) => {
-
+export const PokemonPhysicalCharacteristics = ({
+  pokemon,
+}: PokemonPhysicalCharacteristicsProps) => {
   return (
     <View style={styles.characteristicsContainer}>
       <View style={styles.characteristicBox}>

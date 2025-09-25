@@ -9,14 +9,10 @@ interface PokemonTypesProps {
 export const PokemonTypes = ({ pokemon }: PokemonTypesProps) => {
   return (
     <View style={styles.typesContainer}>
-      {pokemon.types.map((type) => (
+      {pokemon.types.map(type => (
         <View
           key={type.type.name}
-          style={[
-            styles.typeTag,
-            { backgroundColor: getPokemonTypeColor(type.type.name) }
-          ]}
-        >
+          style={[styles.typeTag, { backgroundColor: getPokemonTypeColor(type.type.name) }]}>
           <Text style={styles.typeText}>{type.type.name}</Text>
         </View>
       ))}

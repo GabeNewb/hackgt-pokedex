@@ -1,48 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Pokemon } from "pokenode-ts";
+import type { EvolutionChain, Pokemon, PokemonSpecies } from "pokenode-ts";
 
-interface EvolutionChainResponse {
-  chain: {
-    species: {
-      name: string;
-      url: string;
-    };
-    evolves_to: {
-      species: {
-        name: string;
-        url: string;
-      };
-      evolution_details: {
-        min_level: number;
-        trigger: {
-          name: string;
-        };
-      }[];
-      evolves_to: {
-        species: {
-          name: string;
-          url: string;
-        };
-        evolution_details: {
-          min_level: number;
-          trigger: {
-            name: string;
-          };
-        }[];
-      }[];
-    }[];
-  };
-}
-
-interface PokemonSpeciesResponse {
-  evolution_chain: {
-    url: string;
-  };
-}
 
 export const useGetEvolutionChainQuery = (pokemon: Pokemon | undefined) => {
   // First, fetch the Pokemon species data which contains the evolution chain URL
-  const speciesQuery = useQuery<PokemonSpeciesResponse>({
+  const speciesQuery = useQuery<PokemonSpecies>({
     queryKey: ["pokemon-species", pokemon?.name],
     queryFn: async () => {
       if (!pokemon?.species.url) throw new Error("No species URL available");
@@ -53,10 +15,11 @@ export const useGetEvolutionChainQuery = (pokemon: Pokemon | undefined) => {
       return response.json();
     },
     enabled: Boolean(pokemon?.species.url),
+    staleTime: Infinity,
   });
 
   // Then, fetch the evolution chain data using the URL from species data
-  return useQuery<EvolutionChainResponse>({
+  return useQuery<EvolutionChain>({
     queryKey: ["evolution-chain", pokemon?.name],
     queryFn: async () => {
       if (!speciesQuery.data?.evolution_chain.url) {
@@ -69,5 +32,6 @@ export const useGetEvolutionChainQuery = (pokemon: Pokemon | undefined) => {
       return response.json();
     },
     enabled: Boolean(speciesQuery.data?.evolution_chain.url),
+    staleTime: Infinity,
   });
 };

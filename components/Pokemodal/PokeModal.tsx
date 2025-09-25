@@ -22,12 +22,7 @@ export const PokeModal = ({ isVisible, onClose, pokemon }: PokeModalProps) => {
     : primaryColor;
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={isVisible}
-      onRequestClose={onClose}
-    >
+    <Modal animationType="slide" transparent={true} visible={isVisible} onRequestClose={onClose}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <LinearGradient
@@ -43,9 +38,7 @@ export const PokeModal = ({ isVisible, onClose, pokemon }: PokeModalProps) => {
               source={{ uri: pokemon.sprites.front_default || '' }}
               style={styles.pokemonImage}
             />
-            <Text style={styles.pokemonName}>
-              {pokemon.name}
-            </Text>
+            <Text style={styles.pokemonName}>{pokemon.name}</Text>
 
             {/* Types */}
             <PokemonTypes pokemon={pokemon} />
@@ -58,10 +51,7 @@ export const PokeModal = ({ isVisible, onClose, pokemon }: PokeModalProps) => {
           </ScrollView>
 
           <MoreInfoLink onPress={onClose} pokemon={pokemon} />
-          <Pressable
-            style={styles.closeButton}
-            onPress={onClose}
-          >
+          <Pressable style={styles.closeButton} onPress={onClose}>
             <Text style={styles.closeButtonText}>Close</Text>
           </Pressable>
         </View>

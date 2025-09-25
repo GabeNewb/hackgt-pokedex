@@ -1,8 +1,8 @@
-import { useGetEvolutionChainQuery } from "@/hooks/useGetEvolutionChainQuery";
-import { useGetPokemonQuery } from "@/hooks/useGetPokemonQuery";
-import { Link } from "expo-router";
-import type { Pokemon } from "pokenode-ts";
-import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+import { useGetEvolutionChainQuery } from '@/hooks/useGetEvolutionChainQuery';
+import { useGetPokemonQuery } from '@/hooks/useGetPokemonQuery';
+import { Link } from 'expo-router';
+import type { Pokemon } from 'pokenode-ts';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 
 interface PokemonEvolutionChainProps {
   pokemon: Pokemon;
@@ -10,7 +10,7 @@ interface PokemonEvolutionChainProps {
 
 interface EvolutionStageProps {
   pokemonName: string;
-  level?: number;
+  level?: number | null;
 }
 
 const EvolutionStage = ({ pokemonName, level }: EvolutionStageProps) => {
@@ -31,7 +31,7 @@ const EvolutionStage = ({ pokemonName, level }: EvolutionStageProps) => {
       <Link href={`/pokemon?name=${pokemon.name}`} asChild>
         <View>
           <Image
-            source={{ uri: pokemon.sprites.front_default || "" }}
+            source={{ uri: pokemon.sprites.front_default || '' }}
             style={styles.pokemonSprite}
           />
           <Text style={styles.pokemonName}>{pokemon.name}</Text>
@@ -55,7 +55,7 @@ export const PokemonEvolutionChain = ({ pokemon }: PokemonEvolutionChainProps) =
 
   if (!evolutionChain?.chain) return null;
 
-  const chain = evolutionChain.chain;
+  const { chain } = evolutionChain;
   const firstEvolution = chain.evolves_to[0];
   const secondEvolution = firstEvolution?.evolves_to[0];
 
@@ -106,22 +106,22 @@ export const PokemonEvolutionChain = ({ pokemon }: PokemonEvolutionChainProps) =
 const styles = StyleSheet.create({
   title: {
     fontSize: 22,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   loadingContainer: {
     padding: 20,
-    alignItems: "center",
+    alignItems: 'center',
   },
   chainContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
     gap: 10,
   },
   stageContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     minWidth: 80,
   },
   pokemonSprite: {
@@ -129,26 +129,26 @@ const styles = StyleSheet.create({
     height: 80,
   },
   pokemonName: {
-    textAlign: "center",
-    textTransform: "capitalize",
+    textAlign: 'center',
+    textTransform: 'capitalize',
     fontSize: 14,
     marginTop: 5,
   },
   levelText: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 12,
-    color: "#666",
+    color: '#666',
   },
   arrowContainer: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   arrow: {
     fontSize: 24,
-    color: "#666",
+    color: '#666',
   },
   evolutionLevel: {
     fontSize: 12,
-    color: "#666",
-    textTransform: "capitalize",
+    color: '#666',
+    textTransform: 'capitalize',
   },
 });

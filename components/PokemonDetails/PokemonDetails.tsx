@@ -10,52 +10,57 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
   return (
     <View>
-        {/* Pokemon Image and Basic Info */}
-        <View style={styles.topSection}>
-          <Image
-            source={{ uri: pokemon.sprites.other?.['official-artwork'].front_default || pokemon.sprites.front_default || '' }}
-            style={styles.pokemonImage}
-            />
-          <Text style={styles.pokemonName}>
-            {pokemon.name} #{pokemon.id.toString().padStart(3, '0')}
-          </Text>
+      {/* Pokemon Image and Basic Info */}
+      <View style={styles.topSection}>
+        <Image
+          source={{
+            uri:
+              pokemon.sprites.other?.['official-artwork'].front_default ||
+              pokemon.sprites.front_default ||
+              '',
+          }}
+          style={styles.pokemonImage}
+        />
+        <Text style={styles.pokemonName}>
+          {pokemon.name} #{pokemon.id.toString().padStart(3, '0')}
+        </Text>
 
-          {/* Types */}
-          <PokemonTypes pokemon={pokemon} />
-        </View>
+        {/* Types */}
+        <PokemonTypes pokemon={pokemon} />
+      </View>
 
-        {/* Physical Characteristics */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Physical Characteristics</Text>
-          <PokemonPhysicalCharacteristics pokemon={pokemon} />
-        </View>
+      {/* Physical Characteristics */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Physical Characteristics</Text>
+        <PokemonPhysicalCharacteristics pokemon={pokemon} />
+      </View>
 
-        {/* Abilities */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Abilities</Text>
-          <PokemonAbilities pokemon={pokemon} />
-        </View>
+      {/* Abilities */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Abilities</Text>
+        <PokemonAbilities pokemon={pokemon} />
+      </View>
 
-        {/* Stats */}
-        <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Base Stats</Text>
-            <PokemonStats pokemon={pokemon} />
-        </View>
+      {/* Stats */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Base Stats</Text>
+        <PokemonStats pokemon={pokemon} />
+      </View>
 
-        {/* Evolution Chain */}
-        <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Evolution Chain</Text>
-            <PokemonEvolutionChain pokemon={pokemon} />
-        </View>
+      {/* Evolution Chain */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Evolution Chain</Text>
+        <PokemonEvolutionChain pokemon={pokemon} />
+      </View>
 
-        {/* Moves */}
-        <View style={[styles.section, styles.lastSection]}>
-          <Text style={styles.sectionTitle}>Moves</Text>
-            <PokemonMoves pokemon={pokemon} />
-        </View>
+      {/* Moves */}
+      <View style={[styles.section, styles.lastSection]}>
+        <Text style={styles.sectionTitle}>Moves</Text>
+        <PokemonMoves pokemon={pokemon} />
+      </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   topSection: {

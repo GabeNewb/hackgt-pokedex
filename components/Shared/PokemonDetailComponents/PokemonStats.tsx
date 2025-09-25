@@ -8,18 +8,11 @@ interface PokemonStatsProps {
 export const PokemonStats = ({ pokemon }: PokemonStatsProps) => {
   return (
     <View style={styles.statsContainer}>
-      {pokemon.stats.map((stat) => (
+      {pokemon.stats.map(stat => (
         <View key={stat.stat.name} style={styles.statRow}>
-          <Text style={styles.statName}>
-            {stat.stat.name.replace('-', ' ')}:
-          </Text>
+          <Text style={styles.statName}>{stat.stat.name.replace('-', ' ')}:</Text>
           <View style={styles.statBarContainer}>
-            <View
-              style={[
-                styles.statBar,
-                { width: `${(stat.base_stat / 255) * 100}%` }
-              ]}
-            />
+            <View style={[styles.statBar, { width: `${(stat.base_stat / 255) * 100}%` }]} />
             <Text style={styles.statValue}>{stat.base_stat}</Text>
           </View>
         </View>

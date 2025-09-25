@@ -1,4 +1,5 @@
-import { NUMBERS, PATHS } from "@/constants";
+import { NUMBERS } from "@/constants/NUMBERS";
+import { PATHS } from "@/constants/PATHS";
 import { useQuery } from "@tanstack/react-query";
 import type { NamedAPIResourceList } from "pokenode-ts";
 

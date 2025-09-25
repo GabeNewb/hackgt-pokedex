@@ -17,21 +17,19 @@ export const MoreInfoLink = ({ onPress, pokemon }: MoreInfoLinkProps) => {
 
   return (
     <Link
-        href={{
-          pathname: "/pokemon",
-          params: { name: pokemon.name }
-        }}
-        style={styles.moreInfoButton}
-        onPress={onPress}
-    >
-        <LinearGradient
-          colors={[primaryColor, secondaryColor]}
-          end={{ x: 1, y: 0 }}
-          start={{ x: 0, y: 0 }}
-          style={styles.moreInfoGradient}
-        >
+      href={{
+        pathname: '/pokemon',
+        params: { name: pokemon.name },
+      }}
+      style={styles.moreInfoButton}
+      onPress={onPress}>
+      <LinearGradient
+        colors={[primaryColor, secondaryColor]}
+        end={{ x: 1, y: 0 }}
+        start={{ x: 0, y: 0 }}
+        style={styles.moreInfoGradient}>
         <Text style={styles.moreInfoText}>More Info</Text>
-        </LinearGradient>
+      </LinearGradient>
     </Link>
   );
 };

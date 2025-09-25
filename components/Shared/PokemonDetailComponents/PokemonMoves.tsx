@@ -3,15 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export const PokemonMoves = ({ pokemon }: { pokemon: Pokemon }) => {
   return (
-        <View style={styles.movesContainer}>
-        {pokemon.moves.slice(0, 8).map((move) => (
-            <View key={move.move.name} style={styles.moveItem}>
-            <Text style={styles.moveName}>
-                {move.move.name.replace('-', ' ')}
-            </Text>
-            </View>
-        ))}
+    <View style={styles.movesContainer}>
+      {pokemon.moves.slice(0, 8).map(move => (
+        <View key={move.move.name} style={styles.moveItem}>
+          <Text style={styles.moveName}>{move.move.name.replace('-', ' ')}</Text>
         </View>
+      ))}
+    </View>
   );
 };
 

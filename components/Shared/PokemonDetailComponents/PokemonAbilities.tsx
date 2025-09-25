@@ -3,18 +3,18 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export const PokemonAbilities = ({ pokemon }: { pokemon: Pokemon }) => {
   return (
-        <View style={styles.abilitiesContainer}>
-            {pokemon.abilities.map((ability) => (
-                <View key={ability.ability.name} style={styles.abilityItem}>
-                    <Text style={styles.abilityName}>
-                        {ability.ability.name.replace('-', ' ')}
-                        {ability.is_hidden && ' (Hidden)'}
-                    </Text>
-                </View>
-            ))}
+    <View style={styles.abilitiesContainer}>
+      {pokemon.abilities.map(ability => (
+        <View key={ability.ability.name} style={styles.abilityItem}>
+          <Text style={styles.abilityName}>
+            {ability.ability.name.replace('-', ' ')}
+            {ability.is_hidden && ' (Hidden)'}
+          </Text>
         </View>
+      ))}
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   abilitiesContainer: {
