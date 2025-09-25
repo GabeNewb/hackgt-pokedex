@@ -2,7 +2,7 @@ import { PokemonListItem } from "@/components/PokemonListItem";
 import { useGetAllPokemonQuery } from "@/hooks/useGetAllPokemonQuery";
 import { FlatList, View } from "react-native";
 
-export const App = () => {
+export const PokemonList = () => {
   const { data } = useGetAllPokemonQuery();
 
   return (
