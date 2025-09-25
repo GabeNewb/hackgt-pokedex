@@ -1,3 +1,8 @@
+import { PokemonAbilities } from '@/components/PokemonDetailComponents/PokemonAbilities';
+import { PokemonMoves } from '@/components/PokemonDetailComponents/PokemonMoves';
+import { PokemonPhysicalCharacteristics } from '@/components/PokemonDetailComponents/PokemonPhysicalCharacteristics';
+import { PokemonStats } from '@/components/PokemonDetailComponents/PokemonStats';
+import { PokemonTypes } from '@/components/PokemonDetailComponents/PokemonTypes';
 import { PokemonEvolutionChain } from '@/components/PokemonEvolutionChain';
 import { useGetPokemonQuery } from '@/hooks/useGetPokemonQuery';
 import { getPokemonTypeColor } from '@/utils/getPokemonTypeColor';
@@ -30,8 +35,8 @@ export default function PokemonScreen() {
   }
 
   const primaryColor = getPokemonTypeColor(pokemon.types[0]?.type.name);
-  const secondaryColor = pokemon.types[1] 
-    ? getPokemonTypeColor(pokemon.types[1].type.name) 
+  const secondaryColor = pokemon.types[1]
+    ? getPokemonTypeColor(pokemon.types[1].type.name)
     : primaryColor;
 
   return (
@@ -62,90 +67,37 @@ export default function PokemonScreen() {
           </Text>
 
           {/* Types */}
-          <View style={styles.typesContainer}>
-            {pokemon.types.map((type) => (
-              <View
-                key={type.type.name}
-                style={[
-                  styles.typeTag,
-                  { backgroundColor: getPokemonTypeColor(type.type.name) }
-                ]}
-              >
-                <Text style={styles.typeText}>{type.type.name}</Text>
-              </View>
-            ))}
-          </View>
+          <PokemonTypes pokemon={pokemon} />
         </View>
 
         {/* Physical Characteristics */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Physical Characteristics</Text>
-          <View style={styles.characteristicsContainer}>
-            <View style={styles.characteristicBox}>
-              <Text style={styles.characteristicLabel}>Height</Text>
-              <Text style={styles.characteristicValue}>{(pokemon.height / 10).toFixed(1)}m</Text>
-            </View>
-            <View style={styles.characteristicBox}>
-              <Text style={styles.characteristicLabel}>Weight</Text>
-              <Text style={styles.characteristicValue}>{(pokemon.weight / 10).toFixed(1)}kg</Text>
-            </View>
-          </View>
+          <PokemonPhysicalCharacteristics pokemon={pokemon} />
         </View>
 
         {/* Abilities */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Abilities</Text>
-          <View style={styles.abilitiesContainer}>
-            {pokemon.abilities.map((ability) => (
-              <View key={ability.ability.name} style={styles.abilityItem}>
-                <Text style={styles.abilityName}>
-                  {ability.ability.name.replace('-', ' ')}
-                  {ability.is_hidden && ' (Hidden)'}
-                </Text>
-              </View>
-            ))}
-          </View>
+          <PokemonAbilities pokemon={pokemon} />
         </View>
 
         {/* Stats */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Base Stats</Text>
-          {pokemon.stats.map((stat) => (
-            <View key={stat.stat.name} style={styles.statRow}>
-              <Text style={styles.statName}>
-                {stat.stat.name.replace('-', ' ')}
-              </Text>
-              <View style={styles.statBarContainer}>
-                <View
-                  style={[
-                    styles.statBar,
-                    { 
-                      width: `${(stat.base_stat / 255) * 100}%`,
-                      backgroundColor: primaryColor
-                    }
-                  ]}
-                />
-                <Text style={styles.statValue}>{stat.base_stat}</Text>
-              </View>
-            </View>
-          ))}
+            <Text style={styles.sectionTitle}>Base Stats</Text>
+            <PokemonStats pokemon={pokemon} />
         </View>
 
         {/* Evolution Chain */}
-        <PokemonEvolutionChain pokemon={pokemon} />
+        <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Evolution Chain</Text>
+            <PokemonEvolutionChain pokemon={pokemon} />
+        </View>
 
         {/* Moves */}
         <View style={[styles.section, styles.lastSection]}>
           <Text style={styles.sectionTitle}>Moves</Text>
-          <View style={styles.movesContainer}>
-            {pokemon.moves.slice(0, 8).map((move) => (
-              <View key={move.move.name} style={styles.moveItem}>
-                <Text style={styles.moveName}>
-                  {move.move.name.replace('-', ' ')}
-                </Text>
-              </View>
-            ))}
-          </View>
+            <PokemonMoves pokemon={pokemon} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -209,21 +161,6 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     marginBottom: 10,
   },
-  typesContainer: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  typeTag: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  typeText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
-    textTransform: 'uppercase',
-  },
   section: {
     padding: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -246,78 +183,5 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 15,
-  },
-  characteristicsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  characteristicBox: {
-    alignItems: 'center',
-  },
-  characteristicLabel: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 5,
-  },
-  characteristicValue: {
-    fontSize: 20,
-    fontWeight: '600',
-  },
-  abilitiesContainer: {
-    gap: 10,
-  },
-  abilityItem: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    padding: 12,
-    borderRadius: 10,
-  },
-  abilityName: {
-    fontSize: 16,
-    textTransform: 'capitalize',
-  },
-  statRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  statName: {
-    width: '35%',
-    fontSize: 14,
-    textTransform: 'capitalize',
-    color: '#666',
-  },
-  statBarContainer: {
-    flex: 1,
-    height: 20,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 10,
-    overflow: 'hidden',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  statBar: {
-    height: '100%',
-    borderRadius: 10,
-  },
-  statValue: {
-    position: 'absolute',
-    right: 8,
-    color: '#000',
-    fontWeight: 'bold',
-  },
-  movesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-  },
-  moveItem: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    borderRadius: 15,
-  },
-  moveName: {
-    fontSize: 14,
-    textTransform: 'capitalize',
   },
 });

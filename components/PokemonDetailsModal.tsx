@@ -1,8 +1,11 @@
 import { getPokemonTypeColor } from '@/utils/getPokemonTypeColor';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from 'expo-router';
 import type { Pokemon } from 'pokenode-ts';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { MoreInfoLink } from './MoreInfoLink';
+import { PokemonPhysicalCharacteristics } from './PokemonDetailComponents/PokemonPhysicalCharacteristics';
+import { PokemonStats } from './PokemonDetailComponents/PokemonStats';
+import { PokemonTypes } from './PokemonDetailComponents/PokemonTypes';
 
 interface PokemonDetailsModalProps {
   isVisible: boolean;
@@ -14,8 +17,8 @@ export const PokemonDetailsModal = ({ isVisible, onClose, pokemon }: PokemonDeta
   if (!pokemon) return null;
 
   const primaryColor = getPokemonTypeColor(pokemon.types[0]?.type.name);
-  const secondaryColor = pokemon.types[1] 
-    ? getPokemonTypeColor(pokemon.types[1].type.name) 
+  const secondaryColor = pokemon.types[1]
+    ? getPokemonTypeColor(pokemon.types[1].type.name)
     : primaryColor;
 
   return (
@@ -45,68 +48,15 @@ export const PokemonDetailsModal = ({ isVisible, onClose, pokemon }: PokemonDeta
             </Text>
 
             {/* Types */}
-            <View style={styles.typesContainer}>
-              {pokemon.types.map((type) => (
-                <View
-                  key={type.type.name}
-                  style={[
-                    styles.typeTag,
-                    { backgroundColor: getPokemonTypeColor(type.type.name) }
-                  ]}
-                >
-                  <Text style={styles.typeText}>{type.type.name}</Text>
-                </View>
-              ))}
-            </View>
+            <PokemonTypes pokemon={pokemon} />
 
             {/* Stats */}
-            <View style={styles.statsContainer}>
-              <Text style={styles.sectionTitle}>Base Stats</Text>
-              {pokemon.stats.map((stat) => (
-                <View key={stat.stat.name} style={styles.statRow}>
-                  <Text style={styles.statName}>
-                    {stat.stat.name.replace('-', ' ')}:
-                  </Text>
-                  <View style={styles.statBarContainer}>
-                    <View
-                      style={[
-                        styles.statBar,
-                        { width: `${(stat.base_stat / 255) * 100}%` }
-                      ]}
-                    />
-                    <Text style={styles.statValue}>{stat.base_stat}</Text>
-                  </View>
-                </View>
-              ))}
-            </View>
+            <PokemonStats pokemon={pokemon} />
 
             {/* Additional Info */}
-            <View style={styles.infoContainer}>
-              <Text style={styles.sectionTitle}>Details</Text>
-              <Text style={styles.infoText}>Height: {pokemon.height / 10}m</Text>
-              <Text style={styles.infoText}>Weight: {pokemon.weight / 10}kg</Text>
-            </View>
+            <PokemonPhysicalCharacteristics pokemon={pokemon} />
 
-            <Link
-              href={{
-                pathname: "/pokemon",
-                params: { name: pokemon.name }
-              }}
-              style={styles.moreInfoButton}
-              onPress={() => {
-                onClose();
-              }}
-            >
-              <LinearGradient
-                colors={[primaryColor, secondaryColor]}
-                end={{ x: 1, y: 0 }}
-                start={{ x: 0, y: 0 }}
-                style={styles.moreInfoGradient}
-              >
-                <Text style={styles.moreInfoText}>View Full Details</Text>
-              </LinearGradient>
-            </Link>
-
+            <MoreInfoLink onPress={onClose} pokemon={pokemon} />
           </ScrollView>
 
           <Pressable
@@ -167,68 +117,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     textTransform: 'capitalize',
   },
-  typesContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 10,
-    marginBottom: 20,
-  },
-  typeTag: {
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 15,
-  },
-  typeText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-  },
-  statsContainer: {
-    marginVertical: 20,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  statRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  statName: {
-    textTransform: 'uppercase',
-    width: '40%',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  statBarContainer: {
-    flex: 1,
-    height: 20,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 10,
-    overflow: 'hidden',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  statBar: {
-    height: '100%',
-    backgroundColor: '#4CAF50',
-    borderRadius: 10,
-  },
-  statValue: {
-    position: 'absolute',
-    right: 8,
-    color: '#000',
-    fontWeight: 'bold',
-  },
-  infoContainer: {
-    marginVertical: 20,
-  },
-  infoText: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
   closeButton: {
     position: 'absolute',
     right: 20,
@@ -240,34 +128,5 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: 'white',
     fontWeight: 'bold',
-  },
-  moreInfoButton: {
-    marginVertical: 24,
-    alignSelf: 'center',
-    width: '90%',
-    overflow: 'hidden',
-    borderRadius: 25,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-  },
-  moreInfoGradient: {
-    width: '100%',
-    paddingVertical: 18,
-    paddingHorizontal: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  moreInfoText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
   },
 });

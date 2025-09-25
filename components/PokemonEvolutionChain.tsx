@@ -60,8 +60,7 @@ export const PokemonEvolutionChain = ({ pokemon }: PokemonEvolutionChainProps) =
   const secondEvolution = firstEvolution?.evolves_to[0];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Evolution Chain</Text>
+    <View>
       <View style={styles.chainContainer}>
         {/* Base Form */}
         <EvolutionStage pokemonName={chain.species.name} />
@@ -105,21 +104,6 @@ export const PokemonEvolutionChain = ({ pokemon }: PokemonEvolutionChainProps) =
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    marginHorizontal: 20,
-    marginBottom: 20,
-    borderRadius: 15,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
   title: {
     fontSize: 22,
     fontWeight: "bold",
