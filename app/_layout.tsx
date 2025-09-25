@@ -9,6 +9,8 @@ export default function RootLayout() {
 }
 */
 
+import { queryClient } from "@/react-query/client";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 
 /*
@@ -26,13 +28,15 @@ export default function RootLayout() {
 
 export default function RootLayout() {
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="pokemon/[name]"
+    <QueryClientProvider client={queryClient}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="pokemon/[name]"
         options={{ headerShown: false }}
       />
     </Stack>
+        </QueryClientProvider>
   );
 }
 

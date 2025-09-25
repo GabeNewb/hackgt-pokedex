@@ -92,11 +92,19 @@ export const PokemonDetailsModal = ({ isVisible, onClose, pokemon }: PokemonDeta
                 pathname: "/pokemon",
                 params: { name: pokemon.name }
               }}
+              style={styles.moreInfoButton}
               onPress={() => {
                 onClose();
               }}
             >
-              <Text style={styles.closeButtonText}>View more Info</Text>
+              <LinearGradient
+                colors={[primaryColor, secondaryColor]}
+                end={{ x: 1, y: 0 }}
+                start={{ x: 0, y: 0 }}
+                style={styles.moreInfoGradient}
+              >
+                <Text style={styles.moreInfoText}>View Full Details</Text>
+              </LinearGradient>
             </Link>
 
           </ScrollView>
@@ -234,31 +242,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   moreInfoButton: {
-    marginVertical: 20,
+    marginVertical: 24,
     alignSelf: 'center',
-    width: '80%',
+    width: '90%',
     overflow: 'hidden',
     borderRadius: 25,
-    elevation: 3,
+    elevation: 5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 3,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
   },
   moreInfoGradient: {
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    width: '100%',
+    paddingVertical: 18,
+    paddingHorizontal: 24,
     alignItems: 'center',
     justifyContent: 'center',
   },
   moreInfoText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    letterSpacing: 1,
+    letterSpacing: 1.2,
   },
 });
