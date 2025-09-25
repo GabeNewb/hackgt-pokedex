@@ -1,7 +1,11 @@
 import { Pokemon } from 'pokenode-ts';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const PokemonMoves = ({ pokemon }: { pokemon: Pokemon }) => {
+interface PokemonMovesProps {
+  pokemon: Pokemon;
+}
+
+export const PokemonMoves = ({ pokemon }: PokemonMovesProps) => {
   return (
     <View style={styles.movesContainer}>
       {pokemon.moves.slice(0, 8).map(move => (

@@ -7,7 +7,11 @@ import { PokemonTypes } from '@/components/Shared/PokemonDetailComponents/Pokemo
 import { Pokemon } from 'pokenode-ts';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
-export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
+interface PokemonDetailsProps {
+  pokemon: Pokemon;
+}
+
+export const PokemonDetails = ({ pokemon }:  PokemonDetailsProps ) => {
   return (
     <View>
       {/* Pokemon Image and Basic Info */}

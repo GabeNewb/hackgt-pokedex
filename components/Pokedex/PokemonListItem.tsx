@@ -5,7 +5,11 @@ import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text } from 'react-native';
 import { PokeModal } from '../Pokemodal/PokeModal';
 
-export const PokemonListItem = ({ name }: { name: string }) => {
+interface PokemonListItemProps {
+  name: string;
+}
+
+export const PokemonListItem = ({ name }: PokemonListItemProps) => {
   const { data } = useGetPokemonQuery(name);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

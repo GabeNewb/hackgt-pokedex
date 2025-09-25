@@ -1,7 +1,11 @@
 import { Pokemon } from 'pokenode-ts';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const PokemonAbilities = ({ pokemon }: { pokemon: Pokemon }) => {
+interface PokemonAbilitiesProps {
+  pokemon: Pokemon;
+}
+
+export const PokemonAbilities = ({ pokemon }: PokemonAbilitiesProps) => {
   return (
     <View style={styles.abilitiesContainer}>
       {pokemon.abilities.map(ability => (

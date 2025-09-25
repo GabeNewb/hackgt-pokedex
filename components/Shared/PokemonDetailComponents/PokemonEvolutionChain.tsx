@@ -62,7 +62,6 @@ export const PokemonEvolutionChain = ({ pokemon }: PokemonEvolutionChainProps) =
   return (
     <View>
       <View style={styles.chainContainer}>
-        {/* Base Form */}
         <EvolutionStage pokemonName={chain.species.name} />
 
         {firstEvolution && (

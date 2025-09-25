@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { EvolutionChain, Pokemon, PokemonSpecies } from "pokenode-ts";
 
-
 export const useGetEvolutionChainQuery = (pokemon: Pokemon | undefined) => {
   // First, fetch the Pokemon species data which contains the evolution chain URL
   const speciesQuery = useQuery<PokemonSpecies>({
