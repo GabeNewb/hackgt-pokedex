@@ -1,4 +1,4 @@
-import { PokemonList } from "@/components/PokemonList";
+import { PokemonList } from "@/components/Pokedex/PokemonList";
 
 export default function Index() {
   return (

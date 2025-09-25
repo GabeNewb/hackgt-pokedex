@@ -1,5 +1,5 @@
 import { Image } from 'react-native';
-import pokeball from './pokeball.png';
+import pokeball from '../../assets/images/pokeball.png';
 
 export const PokeballIcon = () => {
 

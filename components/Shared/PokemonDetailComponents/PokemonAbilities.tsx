@@ -6,10 +6,10 @@ export const PokemonAbilities = ({ pokemon }: { pokemon: Pokemon }) => {
         <View style={styles.abilitiesContainer}>
             {pokemon.abilities.map((ability) => (
                 <View key={ability.ability.name} style={styles.abilityItem}>
-                <Text style={styles.abilityName}>
-                    {ability.ability.name.replace('-', ' ')}
-                    {ability.is_hidden && ' (Hidden)'}
-                </Text>
+                    <Text style={styles.abilityName}>
+                        {ability.ability.name.replace('-', ' ')}
+                        {ability.is_hidden && ' (Hidden)'}
+                    </Text>
                 </View>
             ))}
         </View>

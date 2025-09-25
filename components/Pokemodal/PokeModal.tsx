@@ -2,18 +2,18 @@ import { getPokemonTypeColor } from '@/utils/getPokemonTypeColor';
 import { LinearGradient } from 'expo-linear-gradient';
 import type { Pokemon } from 'pokenode-ts';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { PokemonPhysicalCharacteristics } from '../Shared/PokemonDetailComponents/PokemonPhysicalCharacteristics';
+import { PokemonStats } from '../Shared/PokemonDetailComponents/PokemonStats';
+import { PokemonTypes } from '../Shared/PokemonDetailComponents/PokemonTypes';
 import { MoreInfoLink } from './MoreInfoLink';
-import { PokemonPhysicalCharacteristics } from './PokemonDetailComponents/PokemonPhysicalCharacteristics';
-import { PokemonStats } from './PokemonDetailComponents/PokemonStats';
-import { PokemonTypes } from './PokemonDetailComponents/PokemonTypes';
 
-interface PokemonDetailsModalProps {
+interface PokeModalProps {
   isVisible: boolean;
   onClose: () => void;
   pokemon: Pokemon | undefined;
 }
 
-export const PokemonDetailsModal = ({ isVisible, onClose, pokemon }: PokemonDetailsModalProps) => {
+export const PokeModal = ({ isVisible, onClose, pokemon }: PokeModalProps) => {
   if (!pokemon) return null;
 
   const primaryColor = getPokemonTypeColor(pokemon.types[0]?.type.name);
@@ -55,10 +55,9 @@ export const PokemonDetailsModal = ({ isVisible, onClose, pokemon }: PokemonDeta
 
             {/* Additional Info */}
             <PokemonPhysicalCharacteristics pokemon={pokemon} />
-
-            <MoreInfoLink onPress={onClose} pokemon={pokemon} />
           </ScrollView>
 
+          <MoreInfoLink onPress={onClose} pokemon={pokemon} />
           <Pressable
             style={styles.closeButton}
             onPress={onClose}

@@ -3,7 +3,7 @@ import { getPokemonTypeColor } from "@/utils/getPokemonTypeColor";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from "react";
 import { Image, Pressable, Text } from "react-native";
-import { PokemonDetailsModal } from "./PokemonDetailsModal";
+import { PokeModal } from "../Pokemodal/PokeModal";
 
 export const PokemonListItem = ({name}: {name: string}) => {
   const { data } = useGetPokemonQuery(name);
@@ -48,7 +48,7 @@ export const PokemonListItem = ({name}: {name: string}) => {
         <Text style={{ fontWeight: "bold", textTransform: "capitalize", fontSize: 20 }}>{name}</Text>
       </Pressable>
 
-      <PokemonDetailsModal
+      <PokeModal
         isVisible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
         pokemon={data}

@@ -30,7 +30,7 @@ export const PokemonStats = ({ pokemon }: PokemonStatsProps) => {
 
 const styles = StyleSheet.create({
   statsContainer: {
-    marginVertical: 20,
+    padding: 12,
   },
   sectionTitle: {
     fontSize: 20,

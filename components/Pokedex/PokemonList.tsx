@@ -1,4 +1,4 @@
-import { PokemonListItem } from "@/components/PokemonListItem";
+import { PokemonListItem } from "@/components/Pokedex/PokemonListItem";
 import { useGetAllPokemonQuery } from "@/hooks/useGetAllPokemonQuery";
 import { FlatList, View } from "react-native";
 
@@ -33,7 +33,6 @@ export const PokemonList = () => {
         )}
         style={{ flex: 1, width: "100%" }}
       />
-
     </View>
   );
 }

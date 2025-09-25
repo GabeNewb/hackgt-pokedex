@@ -1,4 +1,4 @@
-import { PokeballIcon } from '@/components/PokeballIcon';
+import { PokeballIcon } from '@/components/Shared/PokeballIcon';
 import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
