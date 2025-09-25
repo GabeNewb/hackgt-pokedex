@@ -1,3 +1,4 @@
+import { PokemonEvolutionChain } from '@/components/PokemonEvolutionChain';
 import { useGetPokemonQuery } from '@/hooks/useGetPokemonQuery';
 import { getPokemonTypeColor } from '@/utils/getPokemonTypeColor';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -129,6 +130,9 @@ export default function PokemonScreen() {
             </View>
           ))}
         </View>
+
+        {/* Evolution Chain */}
+        <PokemonEvolutionChain pokemon={pokemon} />
 
         {/* Moves */}
         <View style={[styles.section, styles.lastSection]}>
