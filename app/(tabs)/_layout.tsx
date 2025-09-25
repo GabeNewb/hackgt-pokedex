@@ -1,5 +1,6 @@
 import { PokeballIcon } from '@/components/Shared/PokeballIcon';
 import { Tabs } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 export default function TabLayout() {
   return (
@@ -7,8 +8,8 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarIcon: ({focused}) => focused ? <PokeballIcon /> : null,
-        tabBarStyle: { backgroundColor: '#000', height: 60 },
-        tabBarLabelStyle: { color: '#fff', fontSize: 18 }
+        tabBarStyle: styles.tabBar,
+        tabBarLabelStyle: styles.tabBarLabel
       }}
     >
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
@@ -16,3 +17,14 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: '#000',
+    height: 60
+  },
+  tabBarLabel: {
+    color: '#fff',
+    fontSize: 18
+  }
+});
