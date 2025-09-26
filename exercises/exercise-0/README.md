@@ -38,4 +38,6 @@ Let's start out simple - change the background & text color of your **index.tsx*
 
 For the next hour, feel free to run with this on your own time. I will be slowly making my way through this exercise and answering questions, but if I'm going too slowly for you, feel free to skip to the next exercise!
 
+If I am not around to help or you want to look forward, I have included a copy of roughly what the affected areas of the code should look like at the end of every exercise in **complete-app-copy**.
+
 Timebox: 10 minutes

@@ -14,11 +14,14 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
+    color: '#fff',
     textAlign: 'center',
     fontSize: 24,
+    paddingBottom: 16,
   },
 });

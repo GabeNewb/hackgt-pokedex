@@ -6,6 +6,12 @@ The data for this app is powered by [PokéAPI](https://pokeapi.co/).
 
 Caching is powered by [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview).
 
+## Why React Native? Why Expo?
+
+React Native lets you build native mobile apps using JavaScript and React. With a single codebase, you can target both iOS, Android and Web, saving time and effort while still delivering a native-feeling experience.
+
+Expo provides a powerful set of tools and services that streamline the entire app lifecycle. With Expo, you can get started quickly—no need to install Android Studio or Xcode right away - which is good, because we don't have the time in this quick workshop! It offers easy device testing, over-the-air updates, and a rich library of prebuilt components and APIs, so you can focus on building features instead of configuring native code. Expo also makes building and deploying React Native apps faster and more accessible.
+
 ## Get started
 
 1. Install dependencies
