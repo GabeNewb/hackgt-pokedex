@@ -5,7 +5,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        Open up exercises/exercise-1/README.md to start working on your app!
+        Open up exercises/exercise-0/README.md to start working on your app!
       </Text>
     </View>
   );

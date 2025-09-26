@@ -1,4 +1,4 @@
-# Exercise 2: Make A Pokemon Details Modal!
+# Exercise 3: Make A Pokemon Details Modal!
 
 We've made a simple Pokédex. Let's create something to do on the page.
 
