@@ -5,9 +5,6 @@ export default function AboutScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>HackGT Pokédex!</Text>
-      <Link style={styles.text} href="https://github.com/GabeNewb/hackgt-pokedex#">
-        Repo
-      </Link>
       <Link
         style={styles.text}
         href="https://github.com/GabeNewb/hackgt-pokedex/tree/main/exercises/exercise-0">
